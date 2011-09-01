@@ -1,5 +1,5 @@
 # build dir
-build/*
+lib/*
 
 # tmp
 tmp/*

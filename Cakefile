@@ -1,11 +1,11 @@
 {spawn, exec} = require 'child_process'
 
 task 'build', ->
-  run 'coffee --bare -o build src/*.coffee'
+  run 'coffee --bare -o lib src/*.coffee'
 
 task 'minify', ->
   invoke 'build'
-  run 'uglifyjs -o build/tnetstrings.min.js build/tnetstrings.js --lift-vars'
+  run 'uglifyjs -o lib/tnetstrings.min.js lib/tnetstrings.js --lift-vars'
 
 task 'test', ->
   run 'expresso test/*.test.coffee'
