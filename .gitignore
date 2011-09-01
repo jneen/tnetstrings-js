@@ -3,3 +3,6 @@ build/*
 
 # tmp
 tmp/*
+
+# node craziness
+node_modules/*
