@@ -50,13 +50,13 @@ TNETS = ( ->
     return result
 
   dumpArray = (arr) ->
-    payload = [stringify(el) for el in arr].join('')
+    payload = (stringify(el) for el in arr).join('')
     "#{payload.length}:#{payload}]"
 
   dumpObject = (obj) ->
     # TODO: benchmark this, optimize if necessary
-    payload = [stringify(k)+stringify(v) for k, v of obj].join('')
-    "#{payload.length}:#{payload}"
+    payload = (stringify(k)+stringify(v) for k, v of obj).join('')
+    "#{payload.length}:#{payload}}"
 
   # -*- public methods -*- #
   parseChunk = (data) ->
@@ -89,7 +89,11 @@ TNETS = ( ->
     else if typeof obj is 'number'
       # test if it's an integer (or close enough)
       type = if obj % 1 is 0 then '#' else '^'
+      obj = ''+obj
       "#{obj.length}:#{obj}#{type}"
+    else if typeof obj is 'boolean'
+      obj = ''+obj
+      "#{obj.length}:#{obj}!"
     else if isArray(obj)
       dumpArray(obj)
     else

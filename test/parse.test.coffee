@@ -1,5 +1,4 @@
 assert = require 'assert'
-# console.log inspect(require 'expresso')
 {TNETS} = require '../src/tnetstrings'
 
 test = (name, fn) ->
