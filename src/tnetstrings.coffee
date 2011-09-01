@@ -10,7 +10,7 @@ TNETS = ( ->
     isArray = (a) -> Object::toString.call(a) == '[object Array]'
 
   parsePayload = (data) ->
-    assert data, "invalid data to parse, it's empty."
+    assert data, "invalid data to parseChunk, it's empty."
     colonIndex = data.indexOf(':')
     assert colonIndex > 0, "invalid length spec"
 
@@ -29,15 +29,15 @@ TNETS = ( ->
   parseArray = (data) ->
     result = []
     while data.length > 0
-      [value, data] = parse(data)
+      [value, data] = parseChunk(data)
       result[result.length] = value
 
     result
 
   parsePair = (data) ->
-    [key, extra] = parse(data)
+    [key, extra] = parseChunk(data)
     assert extra.length, "Unbalanced dictionary"
-    [value, extra] = parse(extra)
+    [value, extra] = parseChunk(extra)
 
     return [key, value, extra]
 
@@ -59,7 +59,7 @@ TNETS = ( ->
     "#{payload.length}:#{payload}"
 
   # -*- public methods -*- #
-  parse = (data) ->
+  parseChunk = (data) ->
     [payload, payloadType, remain] = parsePayload(data)
 
     value = switch payloadType
@@ -75,6 +75,8 @@ TNETS = ( ->
         assert false, "invalid payload type: "+payloadType
 
     return [value, remain]
+
+  parse = (data) -> parseChunk(data)[0]
 
   stringify = (obj) ->
     if !obj?
@@ -94,9 +96,7 @@ TNETS = ( ->
       dumpObject(obj)
 
 
-  return
-    parse: parse
-    stringify: stringify
+  return {parse, parseChunk, stringify}
 )()
 
-exports.TNETS = TNETS if typeof exports !== 'undefined'
+exports.TNETS = TNETS if typeof exports isnt 'undefined'
