@@ -6,3 +6,6 @@ tmp/*
 
 # node craziness
 node_modules/*
+
+# env helper
+.env
