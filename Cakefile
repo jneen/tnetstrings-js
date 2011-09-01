@@ -7,6 +7,9 @@ task 'minify', ->
   invoke 'build'
   run 'uglifyjs -o build/tnetstrings.min.js build/tnetstrings.js --lift-vars'
 
+task 'test', ->
+  run 'expresso test/*.test.coffee'
+
 run = (args...) ->
   for a in args
     switch typeof a
