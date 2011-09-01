@@ -22,10 +22,14 @@ test 'stringifying an integer', ->
 
 test 'stringifying a float', ->
   assert.eql '5:12.34^', TNETS.stringify(12.34)
-  # TODO: javascript has weird numbers.
-  # currently testing for floats by n % 1 === 0,
-  # which obviously fails in this case
-  # assert.eql '4:12.0', TNETS.stringify(12.0)
+  # NB: javascript has weird numbers.
+  # There is no internal difference between 12.0 and 12,
+  # they're effectively the same.
+  # therefore you must pass {type: 'float'} so we know
+  # it's actually supposed to be a float.
+  # TODO: This doesn't work for floats nested in places,
+  # and there's got to be a better way...
+  assert.eql '2:12^', TNETS.stringify(12.0, type: 'float')
 
 test 'stringifying an array', ->
   assert.eql '13:0:~1:1#3:abc,]', TNETS.stringify([null, 1, "abc"])

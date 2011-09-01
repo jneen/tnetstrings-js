@@ -78,7 +78,9 @@ TNETS = ( ->
 
   parse = (data) -> parseChunk(data)[0]
 
-  stringify = (obj) ->
+  stringify = (obj, opts) ->
+    opts ||= {}
+
     if !obj?
       return '0:~'
 
@@ -88,7 +90,7 @@ TNETS = ( ->
       "#{obj.length}:#{obj},"
     else if typeof obj is 'number'
       # test if it's an integer (or close enough)
-      type = if obj % 1 is 0 then '#' else '^'
+      type = if obj % 1 is 0 and opts.type isnt 'float' then '#' else '^'
       obj = ''+obj
       "#{obj.length}:#{obj}#{type}"
     else if typeof obj is 'boolean'
