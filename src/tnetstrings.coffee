@@ -90,7 +90,7 @@ TNETS = ( ->
       "#{obj.length}:#{obj},"
     else if typeof obj is 'number'
       # test if it's an integer (or close enough)
-      type = if obj % 1 is 0 and opts.type isnt 'float' then '#' else '^'
+      type = if Math.floor(obj) is obj and opts.type isnt 'float' then '#' else '^'
       obj = ''+obj
       "#{obj.length}:#{obj}#{type}"
     else if typeof obj is 'boolean'
