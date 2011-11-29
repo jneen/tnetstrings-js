@@ -1,8 +1,11 @@
 {
   "name": "tnetstrings",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A fully-featured tnetstrings library, isomorphic to JSON",
   "keywords": ["tnetstrings", "serialization"],
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
   "repository": "git://github.com/jayferd/tnetstrings-js",
+
+  "files": ["index.js", "src", "lib", "test", "Cakefile", "package.json"],
+  "main": "index.js"
 }
