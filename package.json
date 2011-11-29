@@ -6,6 +6,6 @@
   "author": "Jay Adkisson <jjmadkisson at gmail dot com>",
   "repository": "git://github.com/jayferd/tnetstrings-js",
 
-  "files": ["index.js", "src", "lib", "test", "Cakefile", "package.json"],
+  "files": ["index.js", "src", "lib", "test", "Makefile", "package.json"],
   "main": "index.js"
 }

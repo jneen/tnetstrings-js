@@ -1,5 +1,5 @@
 # XXX this is kind of awful, but hey, it keeps the version info in the right place.
-VERSION = `node -e 'require("./index.js").version'`
+VERSION = $(shell node -e 'console.log(require("./index.js").version)')
 
 SRC_DIR = ./src
 TNETS_SRC = $(SRC_DIR)/tnetstrings.coffee
@@ -14,7 +14,7 @@ TNETS_MIN = $(LIB_DIR)/tnetstrings.min.js
 
 CLEAN += $(TNETS_MIN)
 
-PACKAGE = tnetstrings-*.tgz
+PACKAGE = tnetstrings-$(VERSION).tgz
 CLEAN += $(PACKAGE)
 
 .PHONY: test
@@ -36,3 +36,7 @@ package: $(PACKAGE)
 .PHONY: publish
 publish: $(PACKAGE)
 	npm publish $(PACKAGE)
+
+.PHONY: clean
+clean:
+	rm $(CLEAN)
