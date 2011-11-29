@@ -1,5 +1,5 @@
 assert = require 'assert'
-{TNETS} = require '../src/tnetstrings'
+{TNETS} = require '../lib/tnetstrings'
 
 test = (name, fn) ->
   exports["test #{name}"] = fn
