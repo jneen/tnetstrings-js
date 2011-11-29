@@ -1,11 +1,13 @@
-# build dir
+# build artifiacts
 lib/*
+tnetstrings-*.tgz
 
 # tmp
 tmp/*
 
 # node craziness
 node_modules/*
+npm-debug.log
 
 # env helper
 .env

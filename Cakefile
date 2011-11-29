@@ -10,6 +10,11 @@ task 'minify', ->
 task 'test', ->
   run 'expresso test/*.test.coffee'
 
+task 'package', ->
+  invoke 'minify'
+  invoke 'test'
+  run 'npm pack .'
+
 run = (args...) ->
   for a in args
     switch typeof a
