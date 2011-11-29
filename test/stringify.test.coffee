@@ -29,7 +29,7 @@ test 'stringifying a float', ->
   # it's actually supposed to be a float.
   # TODO: This doesn't work for floats nested in places,
   # and there's got to be a better way...
-  assert.eql '1:12#', TNETS.stringify(12.0)
+  assert.eql '2:12#', TNETS.stringify(12.0)
   assert.eql '2:12^', TNETS.stringify(12.0, type: 'float')
 
 test 'stringifying an array', ->
