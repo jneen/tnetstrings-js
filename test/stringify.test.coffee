@@ -41,3 +41,6 @@ test 'stringifying an array', ->
 
 test 'stringifying an object', ->
   assert.eql '16:1:a,1:1#1:b,1:2#}', TNETS.stringify(a: 1, b: 2)
+
+test 'trying to stringify a function', ->
+  assert.throws (-> TNETS.stringify(->)), "TNETS can't stringify a function"
