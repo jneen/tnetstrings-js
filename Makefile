@@ -33,6 +33,9 @@ $(PACKAGE): test
 .PHONY: package
 package: $(PACKAGE)
 
+.PHONY: minify
+minify: $(TNETS_MIN)
+
 .PHONY: publish
 publish: $(PACKAGE)
 	npm publish $(PACKAGE)
