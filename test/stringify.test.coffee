@@ -7,6 +7,9 @@ test = (name, fn) ->
 test 'stringifying null', ->
   assert.eql '0:~', TNETS.stringify(null)
 
+test 'stringifying undefined', ->
+  assert.eql '0:~', TNETS.stringify(undefined)
+
 test 'stringifying a string', ->
   assert.eql '7:abcdefg,', TNETS.stringify('abcdefg')
 
