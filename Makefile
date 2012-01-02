@@ -1,5 +1,5 @@
 # XXX this is kind of awful, but hey, it keeps the version info in the right place.
-VERSION = $(shell node -e 'console.log(require("./index.js").version)')
+VERSION = $(shell node -e 'console.log(JSON.parse(require("fs").readFileSync(__dirname + "/package.json")).version)')
 
 SRC_DIR = ./src
 TNETS_SRC = $(SRC_DIR)/tnetstrings.coffee
@@ -42,4 +42,4 @@ publish: $(PACKAGE)
 
 .PHONY: clean
 clean:
-	rm $(CLEAN)
+	rm -f $(CLEAN)
