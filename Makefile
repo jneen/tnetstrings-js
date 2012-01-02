@@ -17,15 +17,23 @@ CLEAN += $(TNETS_MIN)
 PACKAGE = tnetstrings-$(VERSION).tgz
 CLEAN += $(PACKAGE)
 
+# binaries
+COFFEE ?= coffee
+EXPRESSO ?= expresso
+UGLIFYJS ?= uglifyjs
+
+.PHONY: all
+all: $(TNETS_LIB)
+
 .PHONY: test
 test: $(TNETS_LIB)
-	expresso test/*.test.coffee
+	$(EXPRESSO) test/*.test.coffee
 
 $(TNETS_LIB): $(TNETS_SRC)
-	coffee --bare -o $(LIB_DIR) $(TNETS_SRC)
+	$(COFFEE) --bare -o $(LIB_DIR) $(TNETS_SRC)
 
 $(TNETS_MIN): $(TNETS_LIB)
-	uglifyjs $(UGLIFY_OPTS) -o $(TNETS_MIN) $(TNETS_LIB)
+	$(UGLIFYJS) $(UGLIFY_OPTS) -o $(TNETS_MIN) $(TNETS_LIB)
 
 $(PACKAGE): test
 	npm pack .
